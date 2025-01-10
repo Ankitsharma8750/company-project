@@ -1,4 +1,3 @@
-
 body {
   font-family: "Overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -2634,7 +2633,6 @@ textarea.form-control {
   color: #0f5253;
 }
 
-
 .job-container {
   max-width: 1200px;
   width: 100%;
@@ -2763,9 +2761,8 @@ textarea:focus {
   background-color: #206d6c;
 }
 
-.btn-submit:active{
+.btn-submit:active {
   scale: 0.95;
-
 }
 
 @media (max-width: 768px) {
@@ -2788,36 +2785,86 @@ textarea:focus {
   }
 }
 
-
 /* Blog Page */
-.search-block {
-  margin: 30px 100px;
+.tools-block {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
 }
 
-
 .search-blog {
+  width: 100%;
+  margin: 0 50px;
+}
+
+.search-blog, .filter-blog {
   display: flex;
   align-items: center;
-  background-color: #f0f0f0;
-  padding: 0 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  gap: 50px;
+}
+
+.search-blog input[type="text"], .filter-blog select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 14px;
 }
 
 .search-blog input[type="text"] {
-  border: none;
-  background: none;
-  outline: none;
-  padding: 5px;
-  flex-grow: 1;
+  width: 100%;
+  margin-right: 10px;
 }
 
 .search-icon {
-  color: #388782;
-  padding: 0 8px;
+  margin-left: -100px;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 18px;
+  color: #388782;
 }
 
 .search-icon:hover {
   color: #0f5253;
+}
+
+.filter-blog select {
+  width: 160px;
+  appearance: none;
+  background-size: 12px;
+  padding-right: 40px;
+  color: #388782;
+  cursor: pointer;
+}
+
+.filter-blog select:hover {
+  color: #0f5253;
+}
+
+@media (max-width: 768px) {
+  .tools-block {
+    flex-direction: column;
+  }
+
+  .search-blog, .filter-blog {
+    width: 100%;
+    gap: 20px;
+    margin: 10px 0;
+  }
+
+  .search-icon {
+    margin-left: -50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-block {
+    margin: 20px;
+  }
+
+  .search-blog input[type="text"], .filter-blog select {
+    font-size: 12px;
+  }
+
+  .search-icon {
+    margin-left: -60px;
+  }
 }
