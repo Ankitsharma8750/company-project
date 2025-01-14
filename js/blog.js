@@ -5,9 +5,9 @@ const fetchBlogs = async () => {
     });
 
     if (response.ok) {
-      console.log(`Authentication Successful: ${response.status}`);
+      console.log(`Fetch Successful: ${response.status}`);
     } else {
-      throw new Error(`Authentication Failed: ${response.status}`);
+      throw new Error(`Fetch Failed: ${response.status}`);
     }
 
     const data = await response.json();
@@ -18,11 +18,13 @@ const fetchBlogs = async () => {
   }
 };
 
+let fetchPost = [];
+
 const displayFetchBlogs = (postData) => {
   const blogContainer = document.getElementById("blog-container");
   blogContainer.innerHTML = ""; // Clear existing posts
-  postData.forEach((post) => {
-    const imageUrl = post.images || "images/default.jpg";     
+  fetchPost = postData.map((post) => {
+    const imageUrl = post.images || "images/default.jpg";
     const postElement = document.createElement("div");
     postElement.className = "col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0";
     postElement.innerHTML = `
@@ -38,8 +40,26 @@ const displayFetchBlogs = (postData) => {
       `;
 
     blogContainer.appendChild(postElement);
+    return { title: post.title, element: postElement };
   });
 };
 
 fetchBlogs();
 
+const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", (e) => {
+  const inputValue = e.target.value.toLowerCase();
+  let postFound = false;
+  fetchPost.forEach((blog) => {
+    const isVisible = blog.title.toLowerCase().includes(inputValue);
+    blog.element.style.display = isVisible ? 'block' : 'none';
+    if (isVisible) {
+      postFound = true;
+    }
+  });
+  if (inputValue === "") {
+    fetchBlogs();
+  } else if (!postFound) {
+    document.getElementById("blog-container").innerHTML = "<p>Sorry, no posts found.</p>";
+  }
+});
