@@ -36,18 +36,33 @@ const displayFetchBlogs = (postData) => {
           <span class="date mb-4 d-block text-muted">${new Date(post.publishDate).toLocaleDateString()}</span>
           <p>${post.descriptionHtml.substring(0, 100)}...</p>
           <p><a href="blog-single.html?id=${post.documentId}" class="link-underline">Read More</a></p>
+
         </div>
       `;
 
     blogContainer.appendChild(postElement);
-    return { title: post.title, element: postElement };
+    return { ...post, element: postElement };
   });
 };
 
-fetchBlogs();
+// Filter function
+const filterBlogs = (criteria) => {
+  let sortedPosts;
+  switch (criteria) {
+    case 'recent':
+      sortedPosts = fetchPost.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+      break;
+    case 'old':
+      sortedPosts = fetchPost.sort((a, b) => new Date(a.publishDate) - new Date(b.publishDate));
+      break;
+    default:
+      sortedPosts = fetchPost;
+  }
+  displayFetchBlogs(sortedPosts);
+};
 
-const searchInput = document.getElementById("search-input");
-searchInput.addEventListener("input", (e) => {
+// Event listener for search input
+document.getElementById("search-input").addEventListener("input", (e) => {
   const inputValue = e.target.value.toLowerCase();
   let postFound = false;
   fetchPost.forEach((blog) => {
@@ -63,3 +78,12 @@ searchInput.addEventListener("input", (e) => {
     document.getElementById("blog-container").innerHTML = "<p>Sorry, no posts found.</p>";
   }
 });
+
+// Event listener for filter select
+document.getElementById("sort-filter").addEventListener("change", (e) => {
+  const filterCriteria = e.target.value;
+  filterBlogs(filterCriteria);
+});
+
+// Fetch blogs when the page loads
+fetchBlogs();
