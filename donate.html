@@ -102,11 +102,13 @@
       <div class="row block-9">
         <div class="col-md-6 pr-md-5">
           <h1>Be a Donor</h1>
-          <form action="#">
+          <form action="#" id="donor-form">
             <div class="form-group">
               <input
               type="text"
               class="form-control px-3 py-3"
+              id="name"
+              name="Name"
               placeholder="Your Name"
                   required
                 />
@@ -116,6 +118,8 @@
                   type="email"
                   class="form-control px-3 py-3"
                   placeholder="Your Email"
+                  id="email"
+                  name="Email"
                   required
                 />
               </div>
@@ -123,15 +127,15 @@
                 <input
                   type="number"
                   id="amount"
-                  name="amount"
+                  name="Amount"
                   placeholder="Amount in USD"
-                  class="form-control px-3 py-3"
+                  class="form-control px-3 py-3" 
                   required
                 />
               </div>
               <div class="form-group">
                 <textarea
-                  name="message"
+                  name="Message"
                   id="message"
                   cols="30"
                   rows="7"
@@ -160,18 +164,21 @@
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="Debit Card Number"
+                  id="debit-card-number"
                   required
                 />
                 <input
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="Expiry Date (MM/YY)"
+                  id="debit-card-expiry"
                   required
                 />
                 <input
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="CVV"
+                  id="debit-card-cvv"
                   required
                 />
               </div>
@@ -180,18 +187,21 @@
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="Credit Card Number"
+                  id="credit-card-number"
                   required
                 />
                 <input
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="Expiry Date (MM/YY)"
+                  id="credit-card-expiry"
                   required
                 />
                 <input
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="CVV"
+                  id="credit-card-cvv"
                   required
                 />
               </div>
@@ -200,6 +210,7 @@
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="UPI ID"
+                  id="upi-id"
                   required
                 />
               </div>
@@ -211,12 +222,14 @@
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="Bank Account Number"
+                  id="bank-account-number"
                   required
                 />
                 <input
                   type="text"
                   class="form-control px-3 py-3"
                   placeholder="IFSC Code"
+                  id="ifsc-code"
                   required
                 />
               </div>
@@ -246,12 +259,14 @@
           <div class="col-md-6 col-lg-4">
             <h3 class="heading-section">About Us</h3>
             <p class="lead">
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia, there live the blind texts.
+              UpliftAid Foundation is more than just a non-profit—it's a
+            movement.
             </p>
             <p class="mb-5">
-              Separated they live in Bookmarksgrove right at the coast of the
-              Semantics, a large language ocean.
+              We invite you to join us in our efforts to make the world a
+            better, kinder place. Whether through donations, volunteering, or
+            raising awareness, your support can help us continue to create
+            meaningful change.
             </p>
             <p><a href="#" class="link-underline">Read More</a></p>
           </div>
@@ -336,20 +351,19 @@
                 <li>
                   <span class="icon icon-map-marker"></span
                   ><span class="text"
-                    >203 Fake St. Mountain View, San Francisco, California,
-                    USA</span
+                    >Ghaziabad, Uttar pradesh, India</span
                   >
                 </li>
                 <li>
                   <a href="#"
                     ><span class="icon icon-phone"></span
-                    ><span class="text">+2 392 3929 210</span></a
+                    ><span class="text">+91-8319301961</span></a
                   >
                 </li>
                 <li>
                   <a href="#"
                     ><span class="icon icon-envelope"></span
-                    ><span class="text">info@yourdomain.com</span></a
+                    ><span class="text">upliftaidfoundation.org</span></a
                   >
                 </li>
               </ul>
@@ -364,9 +378,9 @@
               <script>
                 document.write(new Date().getFullYear());
               </script>
-              All rights reserved | This template is made with
-              <i class="ion-ios-heart text-danger" aria-hidden="true"></i> by
-              <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              Upliftaid All rights reserved
+              <i class="ion-ios-heart text-danger" aria-hidden="true"></i> 
+              <a href="#" target="_blank"></a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
           </div>
@@ -418,5 +432,140 @@
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
     <script src="js/donate-form.js"></script>
+
+    <!--  Api call from backend -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".payment-details").forEach((section) => {
+        section.style.display = "none";
+        section.querySelectorAll("input").forEach((input) => {
+          input.disabled = true;
+        });
+      });
+
+      document.getElementById("payment-method").addEventListener("change", () => {
+        const paymentMethod = document.getElementById("payment-method").value;
+
+        document.querySelectorAll(".payment-details").forEach((section) => {
+          section.style.display = "none";
+          section.querySelectorAll("input").forEach((input) => {
+            input.disabled = true;
+          });
+        });
+
+        if (paymentMethod === "debit-card") {
+          const debitCardSection = document.getElementById("debit-card-details");
+          debitCardSection.style.display = "block";
+          debitCardSection.querySelectorAll("input").forEach((input) => {
+            input.disabled = false;
+          });
+        } 
+        else if (paymentMethod === "credit-card") {
+          const creditCardSection = document.getElementById("credit-card-details");
+          creditCardSection.style.display = "block";
+          creditCardSection.querySelectorAll("input").forEach((input) => {
+            input.disabled = false;
+          });
+        } 
+        else if (paymentMethod === "upi") {
+          const upiSection = document.getElementById("upi-details");
+          upiSection.style.display = "block";
+          upiSection.querySelectorAll("input").forEach((input) => {
+            input.disabled = false;
+          });
+        } 
+        else if (paymentMethod === "bank-transfer") {
+          const bankTransferSection = document.getElementById("bank-transfer-details");
+          bankTransferSection.style.display = "block";
+          bankTransferSection.querySelectorAll("input").forEach((input) => {
+            input.disabled = false;
+          });
+        }
+      });
+
+      document.getElementById("payment-method").dispatchEvent(new Event("change"));
+
+      document.getElementById("donor-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const amount = Number(document.getElementById("amount").value);
+        const message = document.getElementById("message").value;
+        const paymentMethod = document.getElementById("payment-method").value;
+
+        if (!name || !email || !amount || !message || !paymentMethod) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+
+
+        //payment details based on the selected method
+        let details = {};
+        if (paymentMethod === "debit-card") {
+          details = {
+            cardNumber: document.getElementById("debit-card-number").value,
+            expiryDate: document.getElementById("debit-card-expiry").value,
+            cvv: document.getElementById("debit-card-cvv").value,
+          };
+        } 
+        else if (paymentMethod === "credit-card") {
+          details = {
+            cardNumber: document.getElementById("credit-card-number").value,
+            expiryDate: document.getElementById("credit-card-expiry").value,
+            cvv: document.getElementById("credit-card-cvv").value,
+          };
+        } 
+        else if (paymentMethod === "upi") {
+          details = {
+            upiId: document.getElementById("upi-id").value,
+          };
+        } 
+        else if (paymentMethod === "bank-transfer") {
+          details = {
+            bankAccountNumber: document.getElementById("bank-account-number").value,
+            ifscCode: document.getElementById("ifsc-code").value,
+          };
+        }
+
+        const payload = {
+          name,
+          email,
+          amount,
+          message,
+          paymentMethod,
+          details,
+        };
+
+        // API call using fetch
+        try {
+          const response = await fetch("http://localhost:8880/donor", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const result = await response.json();
+          if (response.ok) {
+            alert("Payment successful!");
+            console.log("Payment response:", result);
+          } 
+          else {
+            alert("Payment failed!");
+            console.error("Payment error:", result);
+          }
+        } 
+        catch (error) {
+          alert("An error occurred while processing your payment.");
+          console.error("Fetch error:", error);
+        }
+      });
+    });
+
+    </script>
   </body>
 </html>
+
+
