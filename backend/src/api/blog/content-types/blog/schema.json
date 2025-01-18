@@ -35,6 +35,11 @@
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "views": {
+      "type": "integer",
+      "required": false,
+      "default": 0
     }
   }
 }
