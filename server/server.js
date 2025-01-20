@@ -38,7 +38,6 @@ app.get("/posts", async (req, res) => {
         views: post.views,
       };
     });
-
     res.json({ data: modifiedData });
   } catch (error) {
     console.error(
@@ -97,7 +96,6 @@ app.get("/images", async (req, res) => {
 app.post("/posts/:id/view", async (req, res) => {
   const postId = req.params.id;
   try {
-    console.log(`Incrementing views for post ID: ${postId}`);
     const response = await axios.get(
       `${process.env.STRAPI_API_URL}/api/blogs/${postId}`,
       { headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } }
@@ -105,9 +103,6 @@ app.post("/posts/:id/view", async (req, res) => {
     const post = response.data.data;
     const currentViews = post.views || 0;
     const updatedViews = currentViews + 1;
-    console.log(
-      `Current views: ${currentViews}, Updated views: ${updatedViews}`
-    );
     await axios.put(
       `${process.env.STRAPI_API_URL}/api/blogs/${postId}`,
       { data: { views: updatedViews } },

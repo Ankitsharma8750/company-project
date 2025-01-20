@@ -379,6 +379,12 @@ h5,
   }
 }
 
+.img-block{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .block-48 {
   background: #206d6c;
   /* padding: 50px; */
@@ -388,6 +394,7 @@ h5,
   width: 100%;
   height: auto;
 }
+
 
 .block-48 .block-48-text-1 {
   font-size: 30px;
@@ -433,7 +440,7 @@ h5,
   font-size: 14px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #999999;
+  color: #fff;
   -webkit-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
 }
@@ -1900,6 +1907,13 @@ textarea.form-control {
 .sidebar-box h3 {
   font-size: 18px;
   margin-bottom: 15px;
+}
+
+.side-block{
+  display: flex;
+  flex-direction: column;
+  margin-top: 74px;
+  align-items: center;
 }
 
 .categories li,
