@@ -660,7 +660,7 @@
           <div class="col-md-6 pl-md-5">
             <div class="form-volunteer">
               <h2>Be A Volunteer Today</h2>
-              <form action="#" method="post">
+              <form action="#" method="post" id="volunteer-form">
                 <div class="form-group">
                   <!-- <label for="name">Name</label> -->
                   <input
@@ -683,7 +683,7 @@
                   <!-- <label for="v_message">Email</label> -->
                   <textarea
                     name="v_message"
-                    id=""
+                    id="message"
                     cols="30"
                     rows="3"
                     class="form-control py-2"
@@ -884,5 +884,49 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+
+      document.getElementById("volunteer-form").addEventListener("submit", async function (event) {
+        event.preventDefault(); 
+    
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+    
+        const payload = {
+          name,
+          email,
+          message,
+        };
+
+        try {
+          const response = await fetch("http://localhost:8880/volunteer", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(payload),
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            // alert("Thank you for volunteering! " + data.message);
+            alert("Thank you for volunteering! ");
+          } 
+          else {
+            const error = await response.json();
+            alert("Error: " + error.message);
+          }
+        } 
+        catch (err) {
+          console.error("Error:", err);
+          alert("An error occurred. Please try again later.");
+        }
+      });
+    </script>
+
+
   </body>
 </html>
