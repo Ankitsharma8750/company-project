@@ -102,10 +102,11 @@
       <div class="container">
         <div class="row block-9">
           <div class="col-md-6 pr-md-5">
-            <form action="#">
+            <form action="#" id="contact-form">
               <div class="form-group">
                 <input
                   type="text"
+                  id="name"
                   class="form-control px-3 py-3"
                   placeholder="Your Name"
                 />
@@ -113,6 +114,7 @@
               <div class="form-group">
                 <input
                   type="text"
+                  id="email"
                   class="form-control px-3 py-3"
                   placeholder="Your Email"
                 />
@@ -120,6 +122,7 @@
               <div class="form-group">
                 <input
                   type="text"
+                  id="subject"
                   class="form-control px-3 py-3"
                   placeholder="Subject"
                 />
@@ -127,7 +130,7 @@
               <div class="form-group">
                 <textarea
                   name=""
-                  id=""
+                  id="message"
                   cols="30"
                   rows="7"
                   class="form-control px-3 py-3"
@@ -327,5 +330,46 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+      document.getElementById("contact-form").addEventListener("submit", async function (event) {
+        event.preventDefault(); 
+    
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+    
+        const formData = {
+          name,
+          email,
+          subject,
+          message,
+        };
+    
+        try {
+          const response = await fetch("http://localhost:8880/contact", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json", 
+            },
+            body: JSON.stringify(formData), 
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            alert("Message sent successfully! Thank you, " + data.Contact.name + ".");
+          } else {
+            const error = await response.json();
+            alert("Error: " + error.message);
+          }
+        } catch (err) {
+          console.error("Error:", err);
+          alert("An error occurred while sending your message. Please try again later.");
+        }
+      });
+    </script>
+
+
   </body>
 </html>
