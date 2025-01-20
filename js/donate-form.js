@@ -1,5 +1,9 @@
-document
-  .getElementById("payment-method")
+// Function to set the amount in the input field
+function setAmount(amount) {
+  document.getElementById('amount').value = amount;
+}
+
+document.getElementById("payment-method")
   .addEventListener("change", function () {
     const paymentMethods = document.querySelectorAll(".payment-details");
     paymentMethods.forEach((method) => (method.style.display = "none"));

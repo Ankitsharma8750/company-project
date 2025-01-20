@@ -96,162 +96,69 @@
       </div>
     </div>
   </div>
-  <!-- DONATE form -->
+  <!-- DONATE FORM -->
   <div class="site-section">
     <div class="container">
-      <div class="row block-9">
-        <div class="col-md-6 pr-md-5">
-          <h1>Be a Donor</h1>
-          <form action="#" id="donor-form">
-            <div class="form-group">
-              <input
-              type="text"
-              class="form-control px-3 py-3"
-              id="name"
-              name="Name"
-              placeholder="Your Name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control px-3 py-3"
-                  placeholder="Your Email"
-                  id="email"
-                  name="Email"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="number"
-                  id="amount"
-                  name="Amount"
-                  placeholder="Amount in USD"
-                  class="form-control px-3 py-3" 
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <textarea
-                  name="Message"
-                  id="message"
-                  cols="30"
-                  rows="7"
-                  class="form-control px-3 py-3"
-                  placeholder="Message"
-                ></textarea>
-              </div>
-              <div class="form-group">
-                <select
-                  id="payment-method"
-                  name="payment-method"
-                  class="form-control px-3 py-3"
-                  required
-                >
-                  <option value="" disabled selected>
-                    Select Payment Method
-                  </option>
-                  <option value="debit-card">Debit Card</option>
-                  <option value="credit-card">Credit Card</option>
-                  <option value="upi">UPI</option>
-                  <option value="bank-transfer">Bank Transfer</option>
-                </select>
-              </div>
-              <div class="form-group payment-details" id="debit-card-details">
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="Debit Card Number"
-                  id="debit-card-number"
-                  required
-                />
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="Expiry Date (MM/YY)"
-                  id="debit-card-expiry"
-                  required
-                />
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="CVV"
-                  id="debit-card-cvv"
-                  required
-                />
-              </div>
-              <div class="form-group payment-details" id="credit-card-details">
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="Credit Card Number"
-                  id="credit-card-number"
-                  required
-                />
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="Expiry Date (MM/YY)"
-                  id="credit-card-expiry"
-                  required
-                />
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="CVV"
-                  id="credit-card-cvv"
-                  required
-                />
-              </div>
-              <div class="form-group payment-details" id="upi-details">
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="UPI ID"
-                  id="upi-id"
-                  required
-                />
-              </div>
-              <div
-                class="form-group payment-details"
-                id="bank-transfer-details"
-              >
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="Bank Account Number"
-                  id="bank-account-number"
-                  required
-                />
-                <input
-                  type="text"
-                  class="form-control px-3 py-3"
-                  placeholder="IFSC Code"
-                  id="ifsc-code"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="submit"
-                  value="Donate"
-                  class="btn btn-primary py-3 px-5"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="donate-block">
-            <img
-              src="./images/donation.png"
-              alt="Donation Image"
-              class="donation-image"
-            />
-          </div>
+        <div class="row block-9">
+            <div class="col-md-6 pr-md-5">
+                <h1>Be a Donor</h1>
+                <form action="#" id="donor-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control px-3 py-3" id="name" name="Name" placeholder="Your Name" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control px-3 py-3" placeholder="Your Email" id="email" name="Email" required />
+                    </div>
+                      <!-- Predefined Amounts -->
+                      <div class="form-group">
+                        <button type="button" class="btn btn-secondary" onclick="setAmount(25)">₹25</button>
+                        <button type="button" class="btn btn-secondary" onclick="setAmount(50)">₹50</button>
+                        <button type="button" class="btn btn-secondary" onclick="setAmount(100)">₹100</button>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="amount" name="Amount" placeholder="Amount in INR" class="form-control px-3 py-3" required />
+                    </div>
+                  
+                    <div class="form-group">
+                        <textarea name="Message" id="message" cols="30" rows="7" class="form-control px-3 py-3" placeholder="Message"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <select id="payment-method" name="payment-method" class="form-control px-3 py-3" required>
+                            <option value="" disabled selected>Select Payment Method</option>
+                            <option value="debit-card">Debit Card</option>
+                            <option value="credit-card">Credit Card</option>
+                            <option value="upi">UPI</option>
+                            <option value="bank-transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-group payment-details" id="debit-card-details">
+                        <input type="text" class="form-control px-3 py-3" placeholder="Debit Card Number" id="debit-card-number" required />
+                        <input type="text" class="form-control px-3 py-3" placeholder="Expiry Date (MM/YY)" id="debit-card-expiry" required />
+                        <input type="text" class="form-control px-3 py-3" placeholder="CVV" id="debit-card-cvv" required />
+                    </div>
+                    <div class="form-group payment-details" id="credit-card-details">
+                        <input type="text" class="form-control px-3 py-3" placeholder="Credit Card Number" id="credit-card-number" required />
+                        <input type="text" class="form-control px-3 py-3" placeholder="Expiry Date (MM/YY)" id="credit-card-expiry" required />
+                        <input type="text" class="form-control px-3 py-3" placeholder="CVV" id="credit-card-cvv" required />
+                    </div>
+                    <div class="form-group payment-details" id="upi-details">
+                        <input type="text" class="form-control px-3 py-3" placeholder="UPI ID" id="upi-id" required />
+                    </div>
+                    <div class="form-group payment-details" id="bank-transfer-details">
+                        <input type="text" class="form-control px-3 py-3" placeholder="Bank Account Number" id="bank-account-number" required />
+                        <input type="text" class="form-control px-3 py-3" placeholder="IFSC Code" id="ifsc-code" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Donate" class="btn btn-primary py-3 px-5" />
+                    </div>
+                </form>
+            </div>
+            <div class="donate-block">
+                <img src="./images/donation.png" alt="Donation Image" class="donation-image" />
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
     <footer class="footer">
       <div class="container">

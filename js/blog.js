@@ -4,12 +4,6 @@ const fetchBlogs = async () => {
       method: "GET",
     });
 
-    if (response.ok) {
-      console.log(`Fetch Successful: ${response.status}`);
-    } else {
-      throw new Error(`Fetch Failed: ${response.status}`);
-    }
-
     const data = await response.json();
     const blogData = data.data;
     displayFetchBlogs(blogData);
@@ -75,8 +69,6 @@ const filterBlogs = (criteria) => {
   }
   displayFetchBlogs(sortedPosts);
 };
-
-
 
 // Event listener for search input
 document.getElementById("search-input").addEventListener("input", (e) => {
