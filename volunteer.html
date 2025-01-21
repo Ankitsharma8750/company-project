@@ -411,5 +411,53 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+
+      document.getElementById("volunteer-form").addEventListener("submit", handleVolunteerFormSubmit);
+
+      async function handleVolunteerFormSubmit(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phone_no = document.getElementById("phone").value; 
+        const message = document.getElementById("message").value;
+        const availability = document.getElementById("availability").value; 
+        const activities = document.getElementById("preferred-activities").value; 
+
+        const payload = {
+          name,
+          email,
+          phone_no,
+          message,
+          availability,
+          activities,
+        };
+
+        try {
+          const response = await fetch("http://localhost:8880/volunteer", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload), 
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            alert("Thank you for volunteering! " + (data.message || "Submission successful."));
+          } else {
+            const error = await response.json();
+            alert("Error: " + (error.message || "Something went wrong."));
+          }
+        } catch (err) {
+          console.error("Error:", err);
+          alert("An error occurred. Please try again later.");
+        }
+      }
+
+
+    </script>
   </body>
 </html>
