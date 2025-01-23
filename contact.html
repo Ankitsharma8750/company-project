@@ -113,7 +113,7 @@
               </div>
               <div class="form-group">
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   class="form-control px-3 py-3"
                   placeholder="Your Email"
@@ -332,33 +332,35 @@
     <script src="js/main.js"></script>
 
     <script>
+     
       document.getElementById("contact-form").addEventListener("submit", async function (event) {
-        event.preventDefault(); 
-    
+        event.preventDefault();
+
         const name = document.getElementById("name").value;
         const email = document.getElementById("email").value;
         const subject = document.getElementById("subject").value;
         const message = document.getElementById("message").value;
-    
+
         const formData = {
           name,
           email,
           subject,
           message,
         };
-    
+
         try {
           const response = await fetch("http://localhost:8880/contact", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json", 
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData), 
+            body: JSON.stringify(formData),
           });
-    
+
           if (response.ok) {
             const data = await response.json();
-            alert("Message sent successfully! Thank you, " + data.Contact.name + ".");
+            // console.log("Response data:", data); 
+            alert("Message sent successfully! Thank you, " + (data.Contact?.name || "user") + ".");
           } else {
             const error = await response.json();
             alert("Error: " + error.message);
@@ -368,6 +370,8 @@
           alert("An error occurred while sending your message. Please try again later.");
         }
       });
+
+  
     </script>
 
 
