@@ -429,7 +429,7 @@
         formData.append("coverletter", coverletter);
     
         try {
-          const response = await fetch("http://localhost:8880/applicationform", {
+          const response = await fetch("http://localhost:8880/applicationform/createApplication", {
             method: "POST",
             body: formData, 
           });

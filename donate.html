@@ -401,10 +401,10 @@
         const message = document.getElementById("message").value;
         const paymentMethod = document.getElementById("payment-method").value;
 
-        if (!name || !email || !amount || !message || !paymentMethod) {
-          alert("Please fill in all required fields.");
-          return;
-        }
+        // if (!name || !email || !amount || !message || !paymentMethod) {
+        //   alert("Please fill in all required fields.");
+        //   return;
+        // }
 
 
         //payment details based on the selected method
@@ -446,7 +446,7 @@
 
         // API call using fetch
         try {
-          const response = await fetch("http://localhost:8880/donor", {
+          const response = await fetch("http://localhost:8880/donor/createDonor", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -460,7 +460,7 @@
             console.log("Payment response:", result);
           } 
           else {
-            alert("Payment failed!");
+            alert("Payment failed!" + result.message);
             console.error("Payment error:", result);
           }
         } 
