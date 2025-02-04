@@ -146,7 +146,7 @@
               for all.
             </p>
             <p class="mb-0">
-              <a href="#" class="btn btn-primary px-3 py-2">Learn More</a>
+              <a href="/about.html" class="btn btn-primary px-3 py-2">Learn More</a>
             </p>
           </div>
         </div>
@@ -168,7 +168,7 @@
                   sustainable development, promoting mental health awareness,
                   and safeguarding animal rights.
                 </p>
-                <!-- <p><a href="#" class="link-underline">Learn More</a></p> -->
+                <p><a href="/about.html" class="link-underline">Learn More</a></p>
               </div>
             </div>
           </div>
@@ -185,7 +185,7 @@
                   underprivileged communities, protecting the environment,
                   promoting mental health, and caring for animals in need.
                 </p>
-                <!-- <p><a href="donate.html" class="link-underline">Learn More</a></p> -->
+                <p><a href="donate.html" class="link-underline">Learn More</a></p>
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@
                   empowering communities, advocating for mental health,
                   protecting the environment, and caring for animals in need.
                 </p>
-                <!-- <p><a href="volunteer.html" class="link-underline">Learn More</a></p> -->
+                <p><a href="volunteer.html" class="link-underline">Learn More</a></p>
               </div>
             </div>
           </div>
@@ -535,43 +535,66 @@
       </div>
     </div>
     <!-- .section -->
-
-    <div
-      class="featured-section overlay-color-2"
-      style="background-image: url('images/bg_3.jpg')"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <img
-              src="images/bg_3.jpg"
-              alt="Image placeholder"
-              class="img-fluid"
-            />
-          </div>
-
-          <div class="col-md-6 pl-md-5">
-            <span class="featured-text d-block mb-3">Success Stories</span>
-            <h2>
-              Water Is Life. We Successfuly Provide Clean Water in South East
-              Asia
-            </h2>
-            <p class="mb-3">
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia, there live the blind texts.
-            </p>
-            <span class="fund-raised d-block mb-5"
-              >We have raised $100,000</span
-            >
-
-            <p>
-              <a href="#" class="btn btn-success btn-hover-white py-3 px-5"
-                >Read The Full Story</a
-              >
-            </p>
+    <div class="slider-container">
+      <div class="slider">
+        <div class="slide">
+          <div class="featured-section overlay-color-2" style="background-image: url('images/bg_3.jpg')">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/bg_3.jpg" alt="Image placeholder" class="img-fluid" />
+                </div>
+                <div class="col-md-6 pl-md-5">
+                  <span class="featured-text d-block mb-3">Success Stories</span>
+                  <h2>Water Is Life. We Successfully Provide Clean Water in South East Asia</h2>
+                  <p class="mb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                  <span class="fund-raised d-block mb-5">We have raised $100,000</span>
+                  <p><a href="#" class="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="slide">
+          <div class="featured-section overlay-color-2" style="background-image: url('images/bg_4.jpg')">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/bg_4.jpg" alt="Image placeholder" class="img-fluid" />
+                </div>
+                <div class="col-md-6 pl-md-5">
+                  <span class="featured-text d-block mb-3">Success Stories</span>
+                  <h2>Empowering Education. We Build Schools in Rural Areas</h2>
+                  <p class="mb-3">In the midst of remote villages, where access to education was a distant dream, we have successfully built schools to educate young minds.</p>
+                  <span class="fund-raised d-block mb-5">We have raised $200,000</span>
+                  <p><a href="#" class="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="featured-section overlay-color-2" style="background-image: url('images/bg_5.jpg')">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/bg_5.jpg" alt="Image placeholder" class="img-fluid" />
+                </div>
+                <div class="col-md-6 pl-md-5">
+                  <span class="featured-text d-block mb-3">Success Stories</span>
+                  <h2>Healthcare Heroes. We Provide Medical Supplies to Underserved Areas</h2>
+                  <p class="mb-3">In regions where healthcare was scarce, our dedicated team has been tirelessly working to supply essential medical supplies to those in need.</p>
+                  <span class="fund-raised d-block mb-5">We have raised $150,000</span>
+                  <p><a href="#" class="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Add more slide divs for additional stories -->
       </div>
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </div>
     <!-- .featured-donate -->
 
@@ -866,6 +889,7 @@
       </svg>
     </div>
 
+    <script src="js/successStories-slider.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
