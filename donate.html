@@ -404,7 +404,95 @@
     //     }
     //   });
 
+    //   document.getElementById("payment-method").dispatchEvent(new Event("change"));
+
+    //   document.getElementById("donor-form").addEventListener("submit", async (event) => {
+    //     event.preventDefault();
+
+    //     const name = document.getElementById("name").value;
+    //     const email = document.getElementById("email").value;
+    //     const amount = Number(document.getElementById("amount").value);
+    //     const message = document.getElementById("message").value;
+    //     const paymentMethod = document.getElementById("payment-method").value;
+
+    //     // if (!name || !email || !amount || !message || !paymentMethod) {
+    //     //   alert("Please fill in all required fields.");
+    //     //   return;
+    //     // }
+
+
+    //     //payment details based on the selected method
+    //     let details = {};
+    //     if (paymentMethod === "debit-card") {
+    //       details = {
+    //         cardNumber: document.getElementById("debit-card-number").value,
+    //         expiryDate: document.getElementById("debit-card-expiry").value,
+    //         cvv: document.getElementById("debit-card-cvv").value,
+    //       };
+    //     } 
+    //     else if (paymentMethod === "credit-card") {
+    //       details = {
+    //         cardNumber: document.getElementById("credit-card-number").value,
+    //         expiryDate: document.getElementById("credit-card-expiry").value,
+    //         cvv: document.getElementById("credit-card-cvv").value,
+    //       };
+    //     } 
+    //     else if (paymentMethod === "upi") {
+    //       details = {
+    //         upiId: document.getElementById("upi-id").value,
+    //       };
+    //     } 
+    //     else if (paymentMethod === "bank-transfer") {
+    //       details = {
+    //         bankAccountNumber: document.getElementById("bank-account-number").value,
+    //         ifscCode: document.getElementById("ifsc-code").value,
+    //       };
+    //     }
+
+    //     const payload = {
+    //       name,
+    //       email,
+    //       amount,
+    //       message,
+    //       paymentMethod,
+    //       details,
+    //     };
+
+    //     // API call using fetch
+    //     try {
+    //       const response = await fetch("http://localhost:8880/donor/createDonor", {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(payload),
+    //       });
+
+    //       const result = await response.json();
+    //       if (response.ok) {
+    //         alert("Payment successful!");
+    //         console.log("Payment response:", result);
+    //       } 
+    //       else {
+    //         alert("Payment failed!" + result.message);
+    //         console.error("Payment error:", result);
+    //       }
+    //     } 
+    //     catch (error) {
+    //       alert("An error occurred while processing your payment.");
+    //       console.error("Fetch error:", error);
+    //     }
+    //   });
+    // });
+
+
+
+
      </script>
+
+
+
+
 
   </body>
 </html>
