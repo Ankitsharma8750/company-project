@@ -360,7 +360,7 @@
           if (response.ok) {
             const data = await response.json();
             // console.log("Response data:", data); 
-            alert("Message sent successfully! Thank you, " + (data.Contact?.name || "user") + ".");
+            alert("Message sent successfully! Thank you, " + (data.contact?.name || "user") + ".");
           } 
           else {
             const error = await response.json();
