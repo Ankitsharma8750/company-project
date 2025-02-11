@@ -125,126 +125,31 @@
     </div>
 
     <!-- ALL FUNDRAISERS SECTION -->
-    <div class="fundraisers-container">
-      <header class="fund-header">
-        <h1>Our Fundraisers</h1>
-        <p>
-          Support our various fundraising initiatives and help make a
-          difference. Explore the fundraisers below and contribute today!
-        </p>
-      </header>
-      <div class="fundraiser-slider-wrapper">
-        <div class="fundraiser-slider">
-          <!-- Fundraiser Card 1 -->
-          <div class="fundraiser">
-            <img
-              src="images/img_1.jpg"
-              class="fundraiser-img"
-              alt="Fundraiser 1 Image"
-            />
-            <div class="fundraiser-details">
-              <h3>EDUCATION FUND</h3>
-              <p>
-                Description of Fundraiser 1. This fundraiser aims to
-                support...
-              </p>
-              <p><strong>Funds to be raised:</strong> $10,000</p>
-              <button class="donate-btn" data-fundraiser="EDUCATION FUND">
-                Donate Now
-              </button>
-            </div>
-          </div>
-          <!-- Fundraiser Card 2 -->
-          <div class="fundraiser">
-            <img
-              src="images/img_2.jpg"
-              class="fundraiser-img"
-              alt="Fundraiser 2 Image"
-            />
-            <div class="fundraiser-details">
-              <h3>HEALTHCARE FUND</h3>
-              <p>
-                Description of Fundraiser 2. This fundraiser aims to
-                support...
-              </p>
-              <p><strong>Funds to be raised:</strong> $15,000</p>
-              <button class="donate-btn" data-fundraiser="HEALTHCARE FUND">
-                Donate Now
-              </button>
-            </div>
-          </div>
-          <!-- Fundraiser Card 3 -->
-          <div class="fundraiser">
-            <img
-              src="images/img_5.jpg"
-              class="fundraiser-img"
-              alt="Fundraiser 3 Image"
-            />
-            <div class="fundraiser-details">
-              <h3>EMERGENCY RELIEF FUND</h3>
-              <p>
-                Description of Fundraiser 3. This fundraiser aims to
-                support...
-              </p>
-              <p><strong>Funds to be raised:</strong> $12,000</p>
-              <button class="donate-btn" data-fundraiser="EMERGENCY RELIEF FUND">
-                Donate Now
-              </button>
-            </div>
-          </div>
-          <!-- Fundraiser Card 4 -->
-          <div class="fundraiser">
-            <img
-              src="images/img_4.jpg"
-              class="fundraiser-img"
-              alt="Fundraiser 4 Image"
-            />
-            <div class="fundraiser-details">
-              <h3>HUNGER FUND</h3>
-              <p>
-                Description of Fundraiser 4. This fundraiser aims to
-                support...
-              </p>
-              <p><strong>Funds to be raised:</strong> $8,000</p>
-              <button class="donate-btn" data-fundraiser="HUNGER FUND">
-                Donate Now
-              </button>
-            </div>
-          </div>
-          <!-- Fundraiser Card 5 -->
-          <div class="fundraiser">
-            <img
-              src="images/img_3.jpg"
-              class="fundraiser-img"
-              alt="Fundraiser 5 Image"
-            />
-            <div class="fundraiser-details">
-              <h3>Environmental Fund</h3>
-              <p>
-                Description of Fundraiser 5. This fundraiser aims to
-                support...
-              </p>
-              <p><strong>Funds to be raised:</strong> $8,000</p>
-              <button class="donate-btn" data-fundraiser="Environmental Fund">
-                Donate Now
-              </button>
-            </div>
+    <div class="site-section fund-raisers bg-light">
+      <div class="container">
+        <div class="row mb-3 justify-content-center">
+          <div class="col-md-8 text-center">
+            <h2>Our Fundraisers</h2>
+            <p class="lead">
+              Support our various fundraising initiatives and help make a
+              difference. Explore the fundraisers below and contribute today!
+            </p>
           </div>
         </div>
-        <div class="slider-buttons">
-          <span
-            class="ion-ios-arrow-dropleft-circle prev-btn"
-            onclick="moveSlider(-1)"
-          ></span>
-          <span
-            class="ion-ios-arrow-dropright-circle next-btn"
-            onclick="moveSlider(1)"
-          ></span>
+      </div>
+
+      <div class="container-fluid">
+        <!-- <div class="row"> -->
+        <div class="col-md-12 block-11">
+          <div
+            class="nonloop-block-11 owl-carousel"
+            id="fundraisers-container"
+          ></div>
         </div>
+        <!-- </div> -->
       </div>
     </div>
     
-
     <!-- DONATE FORM -->
     <div class="site-section" id="donate-form">
       <div class="container">
@@ -608,6 +513,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/donate-form.js"></script>
+    <script src="js/Donate-Fundraisers/donate-form.js"></script>
   </body>
 </html>
