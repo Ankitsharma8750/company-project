@@ -118,6 +118,220 @@ app.post("/posts/:id/view", async (req, res) => {
   }
 });
 
+app.get("/story", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${process.env.STRAPI_API_URL}/api/success-stories?populate=*`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        },
+      }
+    );
+
+    const modifiedData = response.data.data.map((story) => {
+      // Access the first image in the images array
+      const imageUrl =
+        story.images?.length > 0 ? story.images[0].formats?.medium?.url : null;
+      return {
+        id: story.id,
+        documentId: story.documentId,
+        title: story.title,
+        content: story.content,
+        publishDate: story.date,
+        images: imageUrl ? `${process.env.STRAPI_API_URL}${imageUrl}` : null,
+        descriptionHtml: marked(story.description || ""),
+        views: story.views,
+      };
+    });
+    res.json({ data: modifiedData });
+  } catch (error) {
+    console.error(
+      "Error fetching posts: ",
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+app.get("/story/:id", async (req, res) => {
+  const storyId = req.params.id;
+
+  try {
+    const response = await axios.get(
+      `${process.env.STRAPI_API_URL}/api/success-stories/${storyId}?populate=*`,
+      { headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } }
+    );
+    const post = response.data.data;
+
+    // Access the first image in the images array
+    const imageUrl =
+      post.images?.length > 0 ? post.images[0].formats?.medium?.url : null;
+    post.images = imageUrl ? `${process.env.STRAPI_API_URL}${imageUrl}` : null;
+    post.descriptionHtml = marked(post.description || "");
+
+    res.json({ data: post });
+  } catch (error) {
+    console.error(
+      "Error fetching post: ",
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+app.post("/story/:id/view", async (req, res) => {
+  const storyId = req.params.id;
+  try {
+    const response = await axios.get(
+      `${process.env.STRAPI_API_URL}/api/success-stories/${storyId}`,
+      { headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } }
+    );
+    const post = response.data.data;
+    const currentViews = post.views || 0;
+    const updatedViews = currentViews + 1;
+    await axios.put(
+      `${process.env.STRAPI_API_URL}/api/success-stories/${storyId}`,
+      { data: { views: updatedViews } },
+      { headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } }
+    );
+    res.json({ views: updatedViews });
+  } catch (error) {
+    console.error(
+      "Error updating views: ",
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+app.get("/fundraisers", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${process.env.STRAPI_API_URL}/api/fundraisers?populate=*`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        },
+      }
+    );
+
+    const modifiedData = response.data.data.map((fundraiser) => {
+      // Access the first image in the images array
+      const imageUrl =
+        fundraiser.images?.length > 0
+          ? fundraiser.images[0].formats?.medium?.url
+          : null;
+      return {
+        documentId: fundraiser.documentId,
+        title: fundraiser.title,
+        goalAmount: fundraiser.goalAmount,
+        raisedAmount: fundraiser.raisedAmount,
+        startDate: fundraiser.startDate,
+        endDate: fundraiser.endDate,
+        category: fundraiser.category,
+        status: fundraiser.activeOrNot,
+        images: imageUrl ? `${process.env.STRAPI_API_URL}${imageUrl}` : null,
+        descriptionHtml: marked(fundraiser.description || ""),
+      };
+    });
+    res.json({ data: modifiedData });
+  } catch (error) {
+    console.error(
+      "Error fetching posts: ",
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+app.get("/fundraisers/:id", async (req, res) => {
+  const fundraiserId = req.params.id;
+
+  try {
+    const response = await axios.get(
+      `${process.env.STRAPI_API_URL}/api/fundraisers/${fundraiserId}?populate=*`,
+      { headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } }
+    );
+    const post = response.data.data;
+
+    // Access the first image in the images array
+    const imageUrl =
+      post.images?.length > 0 ? post.images[0].formats?.medium?.url : null;
+    post.images = imageUrl ? `${process.env.STRAPI_API_URL}${imageUrl}` : null;
+    post.descriptionHtml = marked(post.description || "");
+
+    res.json({ data: post });
+  } catch (error) {
+    console.error(
+      "Error fetching post: ",
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+// Proxy endpoint for volunteer submissions
+app.post("/volunteer", async (req, res) => {
+  try {
+    const response = await axios.post(
+      `${process.env.STRAPI_API_URL}/api/volunteers`,
+      req.body,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    res.json({ data: response.data });
+  } catch (error) {
+    console.error(
+      "Error submitting volunteer application: ",
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+app.get("/career", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${process.env.STRAPI_API_URL}/api/careers?populate=*`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        },
+      }
+    );
+
+    const modifiedData = response.data.data.map((career) => {
+      // Access the first image in the images array
+      const imageUrl =
+        career.images?.length > 0
+          ? career.images[0].formats?.medium?.url
+          : null;
+      return {
+        documentId: career.documentId,
+        title: career.title,
+        location: career.location,
+        experience: career.experience,
+        skills: career.skills,
+        images: imageUrl ? `${process.env.STRAPI_API_URL}${imageUrl}` : null,
+        descriptionHtml: marked(career.description || ""),
+      };
+    });
+    res.json({ data: modifiedData });
+  } catch (error) {
+    console.error(
+      "Error fetching posts: ",
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

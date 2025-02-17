@@ -2652,80 +2652,8 @@ textarea.form-control {
 
 /* Why Work With Us */
 
-.container h1 {
-  font-size: 50px;
-  font-weight: 300;
-  margin-bottom: 50px;
-  text-align: center;
-  color: #0f5253;
-}
-
-.job-container {
-  max-width: 1200px;
-  width: 100%;
-  background-color: #fff;
-  margin: auto;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin-bottom: 50px;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  color: #0f5253;
-}
-
-.header p {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.job-listings {
-  margin-bottom: 30px;
-}
-
-.job-listings h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #0f5253;
-}
-
-.job {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  background: #f9f9f9;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.job h3 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.job p {
-  font-size: 1rem;
-  margin-bottom: 5px;
-  color: #666;
-}
-
 .apply-btn {
-  background-color: #0f5253;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  width: 100%;
   transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -2734,82 +2662,9 @@ textarea.form-control {
   transform: scale(1.05);
 }
 
-.application-form {
-  margin-top: 30px;
-}
-
-.application-form h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #206d6c;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
 label {
   margin-bottom: 5px;
   font-weight: bold;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-input:focus,
-textarea:focus {
-  border-color: #1f4037;
-}
-
-.btn-submit {
-  background-color: #0f5253;
-  color: white;
-  padding: 15px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s, transform ease 0.3s;
-  font-size: 1.2rem;
-}
-
-.btn-submit:hover {
-  background-color: #206d6c;
-}
-
-.btn-submit:active {
-  scale: 0.95;
-}
-
-@media (max-width: 768px) {
-  .header h1 {
-    font-size: 2.5rem;
-  }
-
-  .job-listings h2,
-  .application-form h2 {
-    font-size: 2rem;
-  }
-
-  .job h3 {
-    font-size: 1.5rem;
-  }
-
-  .apply-btn,
-  .btn-submit {
-    padding: 10px 15px;
-  }
 }
 
 /* Blog Page */
