@@ -2822,3 +2822,213 @@ button.next {
   margin: 10px 0;
 }
 
+
+/* footer section css */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+body{
+    min-height: 100vh;
+    display: grid;
+    justify-content: end;
+    align-content: end;
+}
+footer{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 50px 80px;
+    background: #206d6c;
+}
+footer .container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-gap: 50px;
+}
+footer .container .sec h2{
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+footer .container .sec h2::before{
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #ff008c;
+}
+footer .container .sec p{
+    font-size: 16px;
+    line-height: 26px;
+    color: #fff;
+}
+/* .socila-icon{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 40px);
+    grid-gap: 10px;
+} */
+/* .socila-icon li{
+    list-style: none;
+} */
+/* .socila-icon li a{
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background: #00039d;
+    border-radius: 50%;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    transition: 0.5s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+} */
+/* .socila-icon li a::before{
+    content: '';
+    position: absolute;
+    height: 40px;
+    width: 0;
+    top: 0;
+    left: 0;
+    background: #ff008c;
+    transition: 0.5s;
+    z-index: -1;
+}
+.socila-icon li a:hover::before{
+    width: 40px;
+} */
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+
+.fa-facebook {
+  background: #1877F2;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #0077B5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #FF0000;
+  color: white;
+}
+
+.fa-twitter {
+  background: #1da1f2;
+  color: white;
+}
+.usefullinks{
+    position: relative;
+}
+.usefullinks li{
+    list-style: none;
+}
+.usefullinks li a{
+    text-decoration: none;
+    font-size: 16px;
+    list-style: none;
+    line-height: 30px;
+    color: #fff;
+    transition: 0.3s;
+}
+.usefullinks li a:hover{
+    color: #ff008c;
+}
+.shop{
+    position: relative;
+}
+.shop li{
+    list-style: none;
+}
+.shop li a{
+    text-decoration: none;
+    font-size: 16px;
+    list-style: none;
+    line-height: 30px;
+    color: #fff;
+    transition: 0.3s;
+}
+.shop li a:hover{
+    color: #ff008c;
+}
+.info{
+    position: relative;
+}
+.info li{
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    margin-bottom: 20px;
+}
+.info li span{
+    color: #fff;
+    font-size: 16px;
+    line-height: 26px;
+}
+.info li span i{
+    color: #fff;
+    font-size: 20px;
+}
+.info li span i.bx{
+    margin-top: 4px;
+}
+footer .container .sec p a{
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+}
+footer .container .sec p a:hover{
+    color: #ff008c;
+}
+.copyright{
+    position: relative;
+    padding: 16px 20px;
+    background: #206d6c;
+}
+.copyright p{
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+}
+@media screen and (max-width:990px) {
+    footer .container{
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 40px;
+    }
+    footer{
+        padding: 50px 40px;
+    }
+}
+@media screen and (max-width:500px){
+    footer .container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
