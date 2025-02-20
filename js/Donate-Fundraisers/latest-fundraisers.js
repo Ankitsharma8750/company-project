@@ -25,12 +25,12 @@ async function latestFundraisers() {
       const imageUrl = fundraiser.images || "images/default.jpg";
 
       fundraiserElement.innerHTML = `
-        <a href="single-fundraiser.html?id=${fundraiser.documentId}">
+        <a href="fundraisers-single.html?id=${fundraiser.documentId}">
           <img class="card-img-top" src="${imageUrl}" alt="Image placeholder" />
         </a>
         <div class="card-body">
           <h3 class="card-title">
-            <a href="single-fundraiser.html?id=${fundraiser.documentId}">${
+            <a href="fundraisers-single.html?id=${fundraiser.documentId}">${
         fundraiser.title
       }</a>
           </h3>
