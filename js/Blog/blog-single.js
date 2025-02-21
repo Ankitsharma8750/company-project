@@ -37,6 +37,11 @@ const displayPost = (post) => {
          post.date
        ).toLocaleDateString()}</span>
           <p>${post.descriptionHtml}</p>
+          <div class="author-info mt-5">
+            <h4>About the Author</h4>
+            <h5><strong>${post.author.name}</strong></h5>
+            <p><i>"${post.author.about}"</i></p>
+          </div>
         </div>
         <div class="col-md-4 sidebar side-block">
           <h3>Trending Posts</h3>

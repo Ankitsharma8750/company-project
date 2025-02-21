@@ -3,14 +3,19 @@ import axios from "axios";
 import dotenv from "dotenv";
 import cors from "cors";
 import { marked } from "marked";
+import multer from "multer";
+import fs from "fs"
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const upload = multer({ dest: "uploads/" })
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/posts", async (req, res) => {
   try {
@@ -274,9 +279,19 @@ app.get("/fundraisers/:id", async (req, res) => {
 // Proxy endpoint for volunteer submissions
 app.post("/volunteer", async (req, res) => {
   try {
+
     const response = await axios.post(
       `${process.env.STRAPI_API_URL}/api/volunteers`,
-      req.body,
+      {
+        data: {
+          name: req.body.name,
+          email: req.body.email,
+          phone: req.body.phone,
+          message: req.body.message,
+          availability: req.body.availability,
+          preferredActivities: req.body.preferredActivities,
+        },
+      },
       {
         headers: {
           Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
@@ -291,6 +306,14 @@ app.post("/volunteer", async (req, res) => {
       "Error submitting volunteer application: ",
       error.response ? error.response.data : error.message
     );
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.error &&
+      error.response.data.error.details
+    ) {
+      console.error("Validation details: ", error.response.data.error.details);
+    }
     res.status(500).json({ error: "Something went wrong" });
   }
 });
@@ -332,6 +355,104 @@ app.get("/career", async (req, res) => {
   }
 });
 
+app.post("/application", upload.single("resume"), async (req, res) => {
+  try {
+    const { name, email, jobPosition, coverLetter } = req.body;
+    const resumeFilePath = req.file.path;
+    const resumeFileName = req.file.originalname;
+
+    // Read the file
+    const file = fs.createReadStream(resumeFilePath);
+
+    // Create FormData for the file upload
+    const form = new FormData();
+    form.append("files", file, { filename: resumeFileName });
+
+    // Upload resume to Strapi
+    const fileUploadResponse = await axios.post(`${process.env.STRAPI_API_URL}/api/upload`, form, {
+      headers: {
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        ...form.getHeaders(),
+      },
+    });
+
+    const resumeId = fileUploadResponse.data[0].id;
+
+    // Create the application entry
+    const response = await axios.post(
+      `${process.env.STRAPI_API_URL}/api/applications`,
+      {
+        data: {
+          name,
+          email,
+          jobPosition,
+          coverLetter,
+          resume: resumeId,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    res.json({ data: response.data });
+  } catch (error) {
+    console.error("Error submitting career application: ", error.response ? error.response.data : error.message);
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.error &&
+      error.response.data.error.details
+    ) {
+      console.error("Validation details: ", error.response.data.error.details);
+    }
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+app.post("/contact", async (req, res) => {
+  try {
+    const { name, email, subject, message } = req.body;
+
+    // Create the contact entry
+    const response = await axios.post(
+      `${process.env.STRAPI_API_URL}/api/contacts`,
+      {
+        data: {
+          name,
+          email,
+          subject,
+          message,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    res.json({ data: response.data });
+  } catch (error) {
+    console.error(
+      "Error submitting contact form: ",
+      error.response ? error.response.data : error.message
+    );
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.error &&
+      error.response.data.error.details
+    ) {
+      console.error("Validation details: ", error.response.data.error.details);
+    }
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

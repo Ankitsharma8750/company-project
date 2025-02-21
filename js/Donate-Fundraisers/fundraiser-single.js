@@ -35,12 +35,18 @@ const displayFundraiser = (fundraiser) => {
             fundraiser.startDate
           ).toLocaleDateString()}</span>
           <p>${fundraiser.descriptionHtml}</p>
-          <p><strong>Funds to be raised:</strong> $${fundraiser.goalAmount}</p>
+        </div>
+         <div class="col-md-4 sidebar side-block">
+          <div class="sidebar-box" id="most-viewed-posts">
+                  <div class="post-entry ">
+                    <p><strong>Funds to be raised:</strong> $${
+                      fundraiser.goalAmount
+                    }</p>
           <p><strong>Raised amount:</strong> $${fundraiser.raisedAmount}</p>
-          <p><strong>Category:</strong> ${fundraiser.category}</p>
           <button class="btn btn-success" onclick="window.location.href='donate.html?id=${
             fundraiser.documentId
           }'">Donate Now</button>
+      </div></div>
         </div>
       </div>
     </div>
@@ -64,7 +70,3 @@ const displayFundraiser = (fundraiser) => {
 
 // Fetch fundraiser when the page loads
 document.addEventListener("DOMContentLoaded", fetchFundraiser);
-
-
-
-

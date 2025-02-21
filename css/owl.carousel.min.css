@@ -53,7 +53,7 @@
   object-fit: cover;
 }
 .owl-carousel .owl-dots.disabled,
-.owl-carousel .owl-nav.disabled {
+.owl-carousel  {
   display: none;
 }
 .no-js .owl-carousel,
