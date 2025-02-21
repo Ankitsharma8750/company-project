@@ -14,10 +14,10 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-}
+} 
 
 /* Navigation */
-nav {
+ nav {
     background-color: #6b21a8;
     color: white;
     padding: 1rem 0;
@@ -35,10 +35,10 @@ nav .container {
     color: white;
     text-decoration: none;
     margin-left: 1rem;
-}
+} 
 
 /* Hero section */
-.hero {
+ .hero {
     background-image: url('/placeholder.svg?height=300&width=1200');
     background-size: cover;
     background-position: center;
@@ -118,10 +118,10 @@ h2 {
     background-color: transparent;
     border: 1px solid #6b21a8;
     color: #6b21a8;
-}
+} 
 
 /* Grid layouts */
-.grid {
+ .grid {
     display: grid;
     gap: 1rem;
 }
@@ -130,10 +130,10 @@ h2 {
 }
 .grid-4 {
     grid-template-columns: repeat(4, 1fr);
-}
+} 
 
 /* Specific section styles */
-#explore-path {
+ #explore-path {
     background-color: #f3e8ff;
 }
 #explore-path .card {
@@ -313,7 +313,7 @@ footer h4 {
 .copyright {
     padding: 1rem 0;
     text-align: center;
-}
+} 
 
 /* Responsive Layout */
 
@@ -322,4 +322,4 @@ footer h4 {
     .footer-section {
         grid-template-columns: 2fr 1fr 1fr 1fr;
     }
-}
+} 
