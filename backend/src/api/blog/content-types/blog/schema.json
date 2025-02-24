@@ -40,6 +40,12 @@
       "type": "integer",
       "required": false,
       "default": 0
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "blogs"
     }
   }
 }

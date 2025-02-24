@@ -3,16 +3,19 @@ import axios from "axios";
 import dotenv from "dotenv";
 import cors from "cors";
 import { marked } from "marked";
+import bodyParser from "body-parser";
+import FormData from "form-data";
 import multer from "multer";
-import fs from "fs"
+import fs from "fs";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const upload = multer({ dest: "uploads/" })
+const upload = multer({ dest: "uploads/" });
 
-app.use(cors());
+app.use(cors())
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -276,10 +279,8 @@ app.get("/fundraisers/:id", async (req, res) => {
   }
 });
 
-// Proxy endpoint for volunteer submissions
 app.post("/volunteer", async (req, res) => {
   try {
-
     const response = await axios.post(
       `${process.env.STRAPI_API_URL}/api/volunteers`,
       {
@@ -369,12 +370,16 @@ app.post("/application", upload.single("resume"), async (req, res) => {
     form.append("files", file, { filename: resumeFileName });
 
     // Upload resume to Strapi
-    const fileUploadResponse = await axios.post(`${process.env.STRAPI_API_URL}/api/upload`, form, {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-        ...form.getHeaders(),
-      },
-    });
+    const fileUploadResponse = await axios.post(
+      `${process.env.STRAPI_API_URL}/api/upload`,
+      form,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+          ...form.getHeaders(),
+        },
+      }
+    );
 
     const resumeId = fileUploadResponse.data[0].id;
 
@@ -400,7 +405,10 @@ app.post("/application", upload.single("resume"), async (req, res) => {
 
     res.json({ data: response.data });
   } catch (error) {
-    console.error("Error submitting career application: ", error.response ? error.response.data : error.message);
+    console.error(
+      "Error submitting career application: ",
+      error.response ? error.response.data : error.message
+    );
     if (
       error.response &&
       error.response.data &&
@@ -453,6 +461,7 @@ app.post("/contact", async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
